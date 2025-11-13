@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <title>Invoice Studio - Builder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- PDF libraries (CDN) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <!-- Top bar with app name + theme toggle -->
+    <header class="header">
+        <h2 class="brand">
+            <span class="brand-pill"></span>
+            Invoice Studio
+        </h2>
+        <button id="themeToggle" class="theme-toggle" type="button">🌙</button>
+    </header>
+
+    <!-- Main layout: form on the left, preview on the right -->
+    <main class="page">
+        <!-- ================= FORM SIDE ================= -->
+        <section class="card form-card">
+            <h2>Invoice Details</h2>
+
+            <!-- Title + invoice number -->
+            <div class="grid two">
+                <div class="field">
+                    <label for="invoiceTitle">Invoice title</label>
+                    <input id="invoiceTitle"
+                           placeholder="Short description of what this invoice is for" />
+                </div>
+                <div class="field">
+                    <label for="invoiceNumber">Invoice number</label>
+                    <input id="invoiceNumber"
+                           placeholder="Reference code e.g. INV-001" />
+                </div>
+            </div>
+
+            <!-- Date -->
+            <div class="field">
+                <label for="invoiceDate">Invoice date</label>
+                <input id="invoiceDate" type="date" />
+            </div>
+
+            <!-- Email section -->
+            <h3>Email details</h3>
+            <div class="grid two">
+                <div class="field">
+                    <label for="fromEmail">Business email</label>
+                    <input id="fromEmail"
+                           placeholder="Email address the invoice is sent from" />
+                </div>
+                <div class="field">
+                    <label for="toEmail">Client email</label>
+                    <input id="toEmail"
+                           placeholder="Email address to send this invoice to" />
+                </div>
+            </div>
+
+            <!-- Addresses -->
+            <h3>Your address</h3>
+            <div class="field">
+                <label class="visually-hidden" for="fromAddress">Your address</label>
+                <textarea id="fromAddress" rows="3"
+                          placeholder="Business name and full address line(s)"></textarea>
+            </div>
+
+            <h3>Client address</h3>
+            <div class="field">
+                <label class="visually-hidden" for="toAddress">Client address</label>
+                <textarea id="toAddress" rows="3"
+                          placeholder="Customer name and full address line(s)"></textarea>
+            </div>
+
+            <!-- Phones -->
+            <h3>Phone numbers</h3>
+            <div class="grid two">
+                <div class="field">
+                    <label for="fromPhone">Business phone</label>
+                    <input id="fromPhone"
+                           placeholder="Main contact number for the business" />
+                </div>
+                <div class="field">
+                    <label for="toPhone">Client phone</label>
+                    <input id="toPhone"
+                           placeholder="Client contact number (optional)" />
+                </div>
+            </div>
+
+            <!-- Car details -->
+            <h3>Car details</h3>
+            <div class="grid three">
+                <div class="field">
+                    <label for="carMake">Make</label>
+                    <input id="carMake" placeholder="Vehicle make" />
+                </div>
+                <div class="field">
+                    <label for="carModel">Model</label>
+                    <input id="carModel" placeholder="Vehicle model" />
+                </div>
+                <div class="field">
+                    <label for="engineSize">Engine size</label>
+                    <input id="engineSize" placeholder="Engine size or type" />
+                </div>
+            </div>
+            <div class="field">
+                <label for="registration">Registration</label>
+                <input id="registration"
+                       placeholder="Vehicle registration number" />
+            </div>
+
+            <!-- Parts -->
+            <h3>Parts</h3>
+            <div id="partsContainer" class="section-box"></div>
+            <button id="addPartBtn" type="button" class="btn small secondary">
+                + Add part row
+            </button>
+
+            <!-- Labour -->
+            <h3>Labour</h3>
+            <div class="field">
+                <label for="labourCost">Total labour cost</label>
+                <input id="labourCost"
+                       placeholder="Overall labour charge (e.g. hourly rate × hours)" />
+            </div>
+
+            <!-- Additional costs -->
+            <h3>Additional costs</h3>
+            <div id="extraContainer" class="section-box"></div>
+            <button id="addExtraBtn" type="button" class="btn small secondary">
+                + Add extra cost row
+            </button>
+
+            <!-- Actions -->
+            <div class="actions">
+                <button id="downloadPdfBtn" type="button" class="btn primary">
+                    Download invoice PDF
+                </button>
+                <button id="downloadJsonBtn" type="button" class="btn subtle">
+                    Export raw data (JSON)
+                </button>
+            </div>
+        </section>
+
+        <!-- ================= PREVIEW SIDE ================= -->
+        <section class="card preview-card">
+            <h2>Live Preview</h2>
+            <div id="preview" class="preview-box"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

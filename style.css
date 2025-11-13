@@ -1,0 +1,378 @@
+/* ==============================
+   Global colour + layout tokens
+   ============================== */
+
+:root {
+  /* main palette: navy + gold, but kept soft so it doesn't shout */
+  --navy: #0a1a2f;
+  --navy-soft: #13233a;
+  --gold: #d4a017;
+  --bg: #e5e7eb;
+  --bg-card: #ffffff;
+  --bg-soft: #eef1f5;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --border-strong: #334155;
+  --border-light: #cbd5f5;
+  --radius-card: 18px;
+  --radius-input: 999px;
+  --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.16);
+}
+
+/* dark mode is there just in case, but the main focus is light */
+html[data-theme="dark"] {
+  --bg: #020617;
+  --bg-card: #020617;
+  --bg-soft: #020617;
+  --text: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-strong: #475569;
+  --border-light: #1e293b;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #f9fafb 0, var(--bg) 50%, var(--bg) 100%);
+  color: var(--text);
+}
+
+/* ========= Intro page layout ========= */
+
+.intro-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-wrapper {
+  width: 100%;
+  max-width: 480px;
+  padding: 16px;
+}
+
+.intro-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 26px 24px 22px;
+  box-shadow: var(--shadow-card);
+  border: 2px solid var(--gold); /* very visible but still classy */
+}
+
+.intro-card h1 {
+  margin: 0 0 8px;
+  font-size: 1.9rem;
+}
+
+.intro-card h1 span {
+  color: var(--gold);
+}
+
+.intro-sub {
+  margin: 0 0 14px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.intro-list {
+  margin: 0 0 18px;
+  padding-left: 18px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* button reused across app */
+.btn {
+  border-radius: var(--radius-input);
+  padding: 9px 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+    color 0.15s ease, border-color 0.15s ease;
+}
+
+/* dedicated style for the intro button */
+.intro-btn {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  background: linear-gradient(135deg, var(--gold), #fbbf24);
+  color: var(--navy);
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.intro-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* ========= Header + main layout ========= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 22px 10px;
+  background: var(--navy);
+  color: #f9fafb;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.4);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.brand-pill {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #fef9c3, var(--gold));
+  border: 2px solid #facc15;
+}
+
+.theme-toggle {
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #111827;
+  color: #f9fafb;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  padding: 18px 18px 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+  gap: 18px;
+}
+
+/* ========= Card styling ========= */
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 20px 20px 22px;
+  box-shadow: var(--shadow-card);
+  border: 2px solid var(--border-strong);
+}
+
+.form-card h2,
+.preview-card h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.form-card h3 {
+  margin-top: 18px;
+  margin-bottom: 6px;
+}
+
+/* ========= Form fields ========= */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.field label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* text inputs + textareas */
+input,
+textarea {
+  width: 100%;
+  max-width: 460px; /* fixed-ish so the fields don’t stretch stupidly wide */
+  padding: 10px 12px;
+  border-radius: var(--radius-input);
+  border: 2px solid var(--border-light);
+  background: var(--bg-soft);
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+textarea {
+  border-radius: 18px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--gold);
+  background: #fef9c3;
+  box-shadow: 0 0 0 2px rgba(212, 160, 23, 0.4);
+}
+
+/* ========= Grid layout for form sections ========= */
+
+.grid {
+  display: grid;
+  gap: 10px 18px;
+}
+
+.grid.two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ========= Parts / extras container ========= */
+
+.section-box {
+  border-radius: 18px;
+  border: 2px dashed var(--gold);
+  padding: 10px;
+  background: rgba(15, 23, 42, 0.02);
+  max-width: 520px;
+}
+
+.section-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr) 34px;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.section-row input {
+  max-width: 100%;
+}
+
+.remove-btn {
+  border: none;
+  background: transparent;
+  color: #ef4444;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* ========= Buttons ========= */
+
+.btn.primary {
+  background: linear-gradient(135deg, var(--gold), #fbbf24);
+  color: var(--navy);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+}
+
+.btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+}
+
+.btn.secondary:hover {
+  background: rgba(250, 204, 21, 0.12);
+}
+
+.btn.subtle {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px dashed var(--text-muted);
+}
+
+.btn.small {
+  padding: 7px 12px;
+  font-size: 0.85rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* ========= Preview styles ========= */
+
+.preview-box {
+  border-radius: 18px;
+  background: #f9fafb;
+  padding: 16px 16px 18px;
+  min-height: 260px;
+  border: 2px solid var(--border-strong);
+}
+
+html[data-theme="dark"] .preview-box {
+  background: #020617;
+}
+
+.preview-box h3 {
+  margin-top: 0;
+}
+
+.preview-box h4 {
+  margin-bottom: 4px;
+  margin-top: 14px;
+  font-size: 0.95rem;
+  color: var(--navy-soft);
+}
+
+.preview-box ul {
+  margin: 4px 0 0 18px;
+  padding: 0;
+}
+
+/* table used for labour in preview */
+.preview-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+}
+
+.preview-table th {
+  background: var(--gold);
+  color: var(--navy);
+  padding: 4px 6px;
+  border: 2px solid var(--border-strong);
+  font-size: 0.86rem;
+}
+
+.preview-table td {
+  border: 2px solid var(--border-strong);
+  padding: 4px 6px;
+  font-size: 0.86rem;
+}
+
+/* Responsive-ish, but main target is desktop */
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
