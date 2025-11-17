@@ -197,35 +197,33 @@ function renderPreview() {
     <p><strong>Invoice No:</strong> ${escapeHtml(state.number)}</p>
     <p><strong>Date:</strong> ${escapeHtml(state.date)}</p>
 
-    <h4>Business contact</h4>
+    <h4 id="previewSubHeads">Business contact</h4>
     <p>
       ${escapeHtml(state.fromAddress).replace(/\n/g, '<br>')}<br>
       ${state.fromPhone ? `Tel: ${escapeHtml(state.fromPhone)}<br>` : ''}
       ${state.fromEmail ? `Email: ${escapeHtml(state.fromEmail)}` : ''}
     </p>
 
-    <h4>Client contact</h4>
+    <h4 id="previewSubHeads">Client contact</h4>
     <p>
       ${escapeHtml(state.toAddress).replace(/\n/g, '<br>')}<br>
       ${state.toPhone ? `Tel: ${escapeHtml(state.toPhone)}<br>` : ''}
       ${state.toEmail ? `Email: ${escapeHtml(state.toEmail)}` : ''}
     </p>
 
-    <h4>Car details</h4>
+    <h4 id="previewSubHeads">Car details</h4>
     <p>
       ${escapeHtml(state.carMake)} ${escapeHtml(state.carModel)}
       ${state.engineSize ? `(${escapeHtml(state.engineSize)})` : ''}<br>
       Reg: ${escapeHtml(state.registration)}
     </p>
 
-    <h4>Parts</h4>
+    <h4 id="previewSubHeads">Parts</h4>
     <ul>${partsHtml || '<li>No parts recorded</li>'}</ul>
 
-    <h4>Labour</h4>
-    <table class="preview-table">
-      <tr><th>Description</th><th>Price</th></tr>
-      <tr><td>Labour</td><td>${escapeHtml(state.labourCost || '£0')}</td></tr>
-    </table>
+    <h4 id="previewSubHeads">Labour</h4>
+    <h3>${escapeHtml("£" + state.labourCost || '£0')}</h3>
+
 
     ${
       state.extras.length
@@ -233,7 +231,7 @@ function renderPreview() {
         : ''
     }
 
-    <h3>Total: £${totals.grandTotal.toFixed(2)}</h3>
+    <h3 id="t1" >Total: £${totals.grandTotal.toFixed(2)}</h3>
   `;
 }
 

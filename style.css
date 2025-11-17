@@ -44,6 +44,10 @@ body {
   color: var(--text);
 }
 
+#previewSubHeads {
+  color: var(--data-theme);
+}
+
 /* ========= Intro page layout ========= */
 
 .intro-body {
@@ -349,6 +353,9 @@ html[data-theme="dark"] .preview-box {
   padding: 0;
 }
 
+#t1 {
+  margin-top: 10px;
+}
 /* table used for labour in preview */
 .preview-table {
   width: 100%;
